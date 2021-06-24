@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 	<!-- 	Exam exam = new NewLecExam();-->	
-	<bean id="exam" class="spring.di.entity.NewLecExam" /> 
+	<bean id="exam" class="spring.di.entity.NewLecExam" p:kor="10" p:eng="10" >
+	<!-- 위와 같이 설정할 수도 있고 아래의 생성자로 설정할 수도 있다. -->
+	<!--  // NewLecExam에 있는 값 4개를 사용한다 -->
+	<!-- 또한 index를 통해 순서를 정해준다(0부터 시작)
+	<홍길동:bean></홍길동:bean> // 홍길동bean만 처리
+	<김길동:bean></김길동:bean> // 김길동bean만 처리(태그가 특정한 처리에 의해 실행될 수 있도록 네임스페이스로 처리)
+	
+		<constructor-arg index="0" value = "10" />
+		<constructor-arg index="1" value = "10" />
+		<constructor-arg index="2" value = "10" />
+		<constructor-arg index="3" value = "10" />
+	 또는 아래처럼 name값으로 설정해도 됨
+	 -->	
+		<constructor-arg name="kor" value = "10" />
+		<constructor-arg name="eng" value = "20" />
+		<constructor-arg name="com" value = "30" />
+		<constructor-arg name="math" value = "40" />
+	</bean>
+	
+	
 	<!-- ExamConsole console = new GridExamConsole() -->
-	<bean id="console" class="spring.di.ui.GridExamConsole" >
+	<bean id="console" class="spring.di.ui.InlineExamConsole" >
 		<!-- console.setExam(exam); -->
 		<property name="exam" ref="exam" />
 	</bean>
+	
+	
+	<util:list id="exams" list-class="java.util.ArrayList">
+		<bean class="spring.di.entity.NewLecExam" p:kor="1" p:eng="1" />	
+		<ref bean="exam" />
+	</util:list>
+	
+	<!-- <bean id="exams" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<bean class="spring.di.entity.NewLecExam" p:kor="1" p:eng="1" />	
+				<ref bean="exam" />
+			</list>
+		</constructor-arg>
+	</bean> -->
+	
 </beans>
