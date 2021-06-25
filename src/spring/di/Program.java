@@ -35,11 +35,11 @@ public class Program {
 		//ExamConsole console = context.getBean(ExamConsole.class); // 오브젝트형을 받기때문에 형식변환 해줘야함(ExamConsole)로
 		console.print();
 		
-		List<Exam> exams = (List<Exam>) context.getBean("exams");//new ArrayList<>();
+		//List<Exam> exams = (List<Exam>) context.getBean("exams");//new ArrayList<>();
 		//exams.add(new NewLecExam(1,1,1,1));
 	
-		for(Exam e : exams) {
-			System.out.println(e);
-		}
+		//for(Exam e : exams) {
+		//	System.out.println(e);
+		//}
 	}
 }

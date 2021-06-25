@@ -3,8 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	<context:annotation-config/>
 	<!-- 	Exam exam = new NewLecExam();-->	
 	<bean id="exam" class="spring.di.entity.NewLecExam" p:kor="10" p:eng="10" >
 	<!-- 위와 같이 설정할 수도 있고 아래의 생성자로 설정할 수도 있다. -->
@@ -29,7 +33,7 @@
 	<!-- ExamConsole console = new GridExamConsole() -->
 	<bean id="console" class="spring.di.ui.InlineExamConsole" >
 		<!-- console.setExam(exam); -->
-		<property name="exam" ref="exam" />
+		<!-- <property name="exam" ref="exam" /> -->
 	</bean>
 	
 	
